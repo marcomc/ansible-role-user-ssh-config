@@ -1,0 +1,19 @@
+galaxy_info:
+  author: Marco Massari Calderone <marco@marcomc.com>
+  description: Ansible role to condigure a user's ssh_config
+  license: MIT
+  min_ansible_version: 2
+  platforms:
+    - name: GenericLinux
+      versions:
+      - any
+    - name: MacOSX
+      versions:
+      - any
+  galaxy_tags:
+    - system
+    - user
+    - admin
+    - macos
+    - ssh
+    - proxy

@@ -1,0 +1,14 @@
+---
+- name: FATAL - This system is family is {{ ansible_facts['os_family'] }}
+  fail:
+    msg: "This role is not compatible with Windows"
+  when: ansible_facts['os_family'] == 'Windows'
+
+- include_tasks: user-ssh-config.yml
+  when:
+    - target_user_id is defined
+    - target_user_id != ""
+
+- debug:
+    msg: "No 'target_user_id' was defined"
+  when: target_user_id is not defined or target_user_id == ""

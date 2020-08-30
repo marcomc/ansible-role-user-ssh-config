@@ -1,0 +1,44 @@
+---
+- name: Assuming home direcotory path for user '{{ target_user_id }}'
+  set_fact:
+    target_user_home_dir_base: "{{ '/Users' if ( ansible_facts['os_family'] == 'Darwin')  else '/home'  }}/{{ target_user_id }}"
+  when: target_user_home_dir_base is not defined or target_user_home_dir_base == ''
+
+- name: target_user_home_dir_base
+  debug:
+    var: target_user_home_dir_base
+  when: verbose|bool
+
+- name: Verify '{{ target_user_home_dir_base }}/.ssh' exists
+  stat:
+    path: "{{ target_user_home_dir_base }}/.ssh"
+  register: user_ssh_config
+
+- name: user_ssh_config
+  debug:
+    var: user_ssh_config
+  when: verbose | bool
+
+- block:
+  - name: Build proxy aliases list.
+    set_fact:
+      ssh_proxy_names: "{{ ssh_proxy_names| default(ssh_proxy_name) }} {{ item }}"
+    loop: "{{ ssh_proxy_aliases }}"
+    when: ssh_proxy_aliases is defined and ssh_proxy_aliases != []
+
+  - name: ssh_proxy_names ( name + aliases )
+    debug:
+      var: ssh_proxy_names
+    when: verbose | bool
+  # end block
+  when: ssh_proxy_enabled | bool
+
+- name: Copy user's ssh configuration into '{{ target_user_home_dir_base }}/.ssh/config'.
+  template:
+    src: templates/ssh_config.j2
+    dest: "{{ target_user_home_dir_base }}/.ssh/config"
+    mode: '0600'
+    owner: "{{ target_user_id }}"
+    group: 'staff'
+  when: user_ssh_config.stat.isdir is defined and user_ssh_config.stat.isdir
+  become: yes
