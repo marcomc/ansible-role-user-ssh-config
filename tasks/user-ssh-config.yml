@@ -40,5 +40,6 @@
     mode: '0600'
     owner: "{{ target_user_id }}"
     group: 'staff'
+    backup: yes
   when: user_ssh_config.stat.isdir is defined and user_ssh_config.stat.isdir
   become: yes
