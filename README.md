@@ -23,7 +23,7 @@ It also gives the opportunity to define a ssh proxy server to use for all ssh co
 
 ```
 verbose: no
-target_user_id: "{{ ansible_user }}" # mandatory - by default is the user running ansible
+target_user_id: "{{ ansible_user_id }}" # mandatory - by default is the user running ansible
 target_user_home_dir_base: ''           # optional - in case the target user home is in an unconventional path
 ssh_proxy_enabled: no                   # optional - toggle the declaration of a SSH Proxy in the .ssh/config file
 ssh_proxy_name: ''                      # optional - dns name or IP of your SSH proxy if you have one
