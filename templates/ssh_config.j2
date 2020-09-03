@@ -10,7 +10,7 @@ Host *
      UseKeychain yes
      # Only MacOS supports UseKeychain and sometimes this config is shared with a docker container
 
-{% if ssh_proxy_enabled -%}
+{% if ssh_proxy_enabled %}
 Host {{ ssh_proxy_names }}
      HostName {{ ssh_proxy_name }}
      Port {{ ssh_proxy_port|default(22) }}
@@ -20,4 +20,4 @@ Host {{ ssh_proxy_names }}
 Host * !192.* !10.* !127.* !*.dev !*.local
      ProxyCommand ssh {{ ssh_proxy_name }} -W %h:%p 2> /dev/null
      ControlPath  ~/.ssh/mux-%r@%h:%p
-{%- endif %}
+{% endif %}
