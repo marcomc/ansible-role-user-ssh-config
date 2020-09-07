@@ -7,7 +7,7 @@
 - include_tasks: user-ssh-config.yml
   when:
     - target_user_id is defined
-    - target_user_id != ""
+    - target_user_id | length > 0
 
 - debug:
     msg: "No 'target_user_id' was defined"
