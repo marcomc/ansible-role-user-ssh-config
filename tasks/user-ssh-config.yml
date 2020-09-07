@@ -2,7 +2,7 @@
 - name: Assuming home direcotory path for user '{{ target_user_id }}'
   set_fact:
     target_user_home_dir_base: "{{ '/Users' if ( ansible_facts['os_family'] == 'Darwin')  else '/home'  }}/{{ target_user_id }}"
-  when: target_user_home_dir_base is not defined or target_user_home_dir_base == ''
+  when: target_user_home_dir_base is not defined or target_user_home_dir_base | length == 0
 
 - name: target_user_home_dir_base
   debug:
