@@ -1,6 +1,6 @@
 ---
-language: generic
-
+language: python
+python: 3.8.5
 matrix:
   include:
     # Catalina (10.15)
@@ -22,8 +22,8 @@ env:
   global:
     - TEST_ANSIBLE_HOSTNAME: localhost
       TEST_ANSIBLE_CONNECTION: local
-      PYTHON: 3.6.7
       ANSIBLE_BECOME_PASS: travis
+      
 before_install:
   - if [ "$TRAVIS_OS_NAME" = "osx" ];then export TEST_USER_HOME_DIR_BASE='/Users'; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ];then export TEST_USER_HOME_DIR_BASE='/home'; fi
