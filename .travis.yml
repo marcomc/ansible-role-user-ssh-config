@@ -1,4 +1,10 @@
 ---
+os: linux
+dist:
+  - xenial
+  - bionic
+  - focal
+
 language: generic
 
 jobs:
@@ -7,25 +13,22 @@ jobs:
       osx_image:
       # OS X 10.15
         - xcode12
+      env:
+        global:
+          - TEST_USER_HOME_DIR_BASE: '/Users'
+    - os: osx
+      osx_image:
       # OS X 10.14
         - xcode11.2
       env:
         global:
           - TEST_USER_HOME_DIR_BASE: '/Users'
-    - os: linux
-      dist:
-        - xenial
-        - bionic
-        - focal
-      env:
-        global:
-          - TEST_USER_HOME_DIR_BASE: '/home'
-
 sudo: required
 env:
   global:
     - TEST_ANSIBLE_HOSTNAME: localhost
       TEST_ANSIBLE_CONNECTION: local
+      TEST_USER_HOME_DIR_BASE: '/home'
       PYTHON: 3.6.7
       ANSIBLE_BECOME_PASS: travis
 install:
