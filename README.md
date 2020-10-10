@@ -28,7 +28,7 @@ Used in [Splinter, an opinionated provisioning tool for macOS](https://github.co
 
     verbose: no
     target_user_id: "{{ ansible_user_id }}" # mandatory - by default is the user running ansible
-    target_user_home_dir: ''           # optional - in case the target user home is in an unconventional path
+    target_user_home_dir: ''                # optional - in case the target user home is in an unconventional path
     ssh_proxy_enabled: no                   # optional - toggle the declaration of a SSH Proxy in the .ssh/config file
     ssh_proxy_name: ''                      # optional - dns name or IP of your SSH proxy if you have one
     ssh_proxy_aliases: []                   # optional - aliases or short names you might need to call your SSH proxy with
