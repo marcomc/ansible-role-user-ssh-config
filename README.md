@@ -6,14 +6,15 @@ This ansible role setup an '$HOME/.ssh/config' file for the targeted user defini
 
 It also gives the opportunity to define a ssh proxy server to use for all ssh connections.
 
-This is a role for any unix-like system
+This is a role for any unix-like system.
 
 Used in [Splinter, an opinionated provisioning tool for macOS](https://github.com/marcomc/splinter).
 
 ## Example Playbook
 
     - vars:
-        arget_user_id: "new_dev_account"
+        target_user_id: "new_dev_account"
+        target_user_home_dir_base: '/home'
         ssh_proxy_enabled: yes
         ssh_proxy_name: 'my.fancy-ssh-proxy.com'
         ssh_proxy_aliases: ['fancy-proxy','mysshproxy','fancy-ssh-proxy.com']
@@ -21,7 +22,7 @@ Used in [Splinter, an opinionated provisioning tool for macOS](https://github.co
 
     - hosts: localhost
       roles:
-      - marcomc.user-ssh-proxy
+      - marcomc.user_ssh_config
 
 ## Variables
 

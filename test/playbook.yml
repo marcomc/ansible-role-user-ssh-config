@@ -1,0 +1,21 @@
+---
+- hosts: local
+  tasks:
+    - add_host:
+        groups: test
+        name: "{{ lookup('env','TEST_ANSIBLE_HOSTNAME') }}"
+      changed_when: false
+
+- hosts: test
+  vars:
+    verbose: yes
+    target_user_id: "travis"
+    target_user_home_dir_base: "{{ lookup('env','TEST_USER_HOME_DIR_BASE') }}"
+    ssh_proxy_enabled: yes
+    ssh_proxy_name: 'my.fancy-ssh-proxy.com'
+    ssh_proxy_aliases: ['fancy-proxy','mysshproxy','fancy-ssh-proxy.com']
+    ssh_proxy_port: 2222
+
+  roles:
+    - user_ssh_config
+...
