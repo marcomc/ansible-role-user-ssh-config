@@ -6,9 +6,11 @@ matrix:
     # Catalina (10.15)
     - os: osx
       osx_image: xcode12
+      language: generic
     # Mojave (10.14)
     - os: osx
       osx_image: xcode11.2
+      language: generic
     - os: linux
       dist: xenial
     - os: linux
@@ -23,7 +25,7 @@ env:
     - TEST_ANSIBLE_HOSTNAME: localhost
       TEST_ANSIBLE_CONNECTION: local
       ANSIBLE_BECOME_PASS: travis
-      
+
 before_install:
   - if [ "$TRAVIS_OS_NAME" = "osx" ];then export TEST_USER_HOME_DIR_BASE='/Users'; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ];then export TEST_USER_HOME_DIR_BASE='/home'; fi
