@@ -25,8 +25,8 @@ env:
       PYTHON: 3.6.7
       ANSIBLE_BECOME_PASS: travis
 before_install:
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; export TEST_USER_HOME_DIR_BASE='/Users'; fi
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; export TEST_USER_HOME_DIR_BASE='/home'; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ];then export TEST_USER_HOME_DIR_BASE='/Users'; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ];then export TEST_USER_HOME_DIR_BASE='/home'; fi
 
 install:
   - pip3 install --upgrade pip
