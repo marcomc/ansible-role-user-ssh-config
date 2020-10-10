@@ -1,33 +1,33 @@
 ---
-os: linux
-dist:
-  - xenial
-  - bionic
-  - focal
-
 language: generic
 
-# env:
-#   matrix:
-#     - TEST_SUITE='default'
-#
-# jobs:
-#   include:
-#     - os: osx
-#       osx_image: xcode12
-#       env: TEST_USER_HOME_DIR_BASE='/Users'
-#     - os: osx
-#       osx_image: xcode11.2
-#       env: TEST_USER_HOME_DIR_BASE='/Users'
+matrix:
+  include:
+    # Catalina (10.15)
+    - os: osx
+      osx_image: xcode12
+    # Mojave (10.14)
+    - os: osx
+      osx_image: xcode11.2
+    - os: linux
+      dist: xenial
+    - os: linux
+      dist: bionic
+    - os: linux
+      dist: focal
+
 
 sudo: required
 env:
   global:
     - TEST_ANSIBLE_HOSTNAME: localhost
       TEST_ANSIBLE_CONNECTION: local
-      TEST_USER_HOME_DIR_BASE: '/home'
       PYTHON: 3.6.7
       ANSIBLE_BECOME_PASS: travis
+before_install:
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; export TEST_USER_HOME_DIR_BASE='/Users'; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; export TEST_USER_HOME_DIR_BASE='/home'; fi
+
 install:
   - pip3 install --upgrade pip
   - pip3 install ansible ansible-lint
