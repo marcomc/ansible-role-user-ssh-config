@@ -22,15 +22,15 @@ jobs:
           - TEST_USER_HOME_DIR_BASE: '/home'
 
 sudo: required
-install:
-  - pip3 install --upgrade pip
-  - pip3 install ansible ansible-lint
 env:
   global:
     - TEST_ANSIBLE_HOSTNAME: localhost
       TEST_ANSIBLE_CONNECTION: local
-      PYTHON: 3.5.1
+      PYTHON: 3.6.7
       ANSIBLE_BECOME_PASS: travis
+install:
+  - pip3 install --upgrade pip
+  - pip3 install ansible ansible-lint
 script:
   - ansible-lint .
   - ansible-playbook -i test/inventory test/playbook.yml --syntax-check
