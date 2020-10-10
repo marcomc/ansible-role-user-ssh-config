@@ -1,6 +1,6 @@
 galaxy_info:
   author: Marco Massari Calderone <marco@marcomc.com>
-  description: Ansible role to condigure a user's ssh_config
+  description: Ansible role to condigure a user's ssh_config. Also used in Splinter provisioning tool.
   license: MIT
   role_name: user_ssh_config
   min_ansible_version: 2
