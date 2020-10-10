@@ -10,7 +10,15 @@ galaxy_info:
       - any
     - name: MacOSX
       versions:
-      - any
+        - '10.7'
+        - '10.8'
+        - '10.9'
+        - '10.10'
+        - '10.11'
+        - '10.12'
+        - '10.13'
+        - '10.14'
+        - '10.15'
   galaxy_tags:
     - system
     - user
