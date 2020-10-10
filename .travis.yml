@@ -25,10 +25,6 @@ env:
       TEST_ANSIBLE_CONNECTION: local
       ANSIBLE_BECOME_PASS: travis
 
-before_install:
-  - if [ "$TRAVIS_OS_NAME" = "osx" ];then export TEST_USER_HOME_DIR_BASE='/Users'; fi
-  - if [ "$TRAVIS_OS_NAME" = "linux" ];then export TEST_USER_HOME_DIR_BASE='/home'; fi
-
 install:
   - pip3 install --upgrade pip
   - pip3 install ansible ansible-lint
