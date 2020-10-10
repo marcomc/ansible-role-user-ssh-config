@@ -2,17 +2,17 @@
 - hosts: local
   tasks:
     - add_host:
-        groups: test
-        name: "{{ lookup('env','TEST_ANSIBLE_HOSTNAME') }}"
+        groups: local
+        name: "{{ lookup('env', 'TEST_ANSIBLE_HOSTNAME') }}"
       changed_when: false
 
-- hosts: test
+- hosts: local
   vars:
     verbose: yes
     target_user_id: "travis"
     ssh_proxy_enabled: yes
     ssh_proxy_name: 'my.fancy-ssh-proxy.com'
-    ssh_proxy_aliases: ['fancy-proxy','mysshproxy','fancy-ssh-proxy.com']
+    ssh_proxy_aliases: ['fancy-proxy', 'mysshproxy', 'fancy-ssh-proxy.com']
     ssh_proxy_port: 2222
 
   pre_tasks:

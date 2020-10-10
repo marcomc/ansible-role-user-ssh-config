@@ -18,7 +18,6 @@ matrix:
     - os: linux
       dist: focal
 
-
 sudo: required
 env:
   global:
