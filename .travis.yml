@@ -7,22 +7,19 @@ dist:
 
 language: generic
 
-jobs:
-  include:
-    - os: osx
-      osx_image:
-      # OS X 10.15
-        - xcode12
-      env:
-        global:
-          - TEST_USER_HOME_DIR_BASE: '/Users'
-    - os: osx
-      osx_image:
-      # OS X 10.14
-        - xcode11.2
-      env:
-        global:
-          - TEST_USER_HOME_DIR_BASE: '/Users'
+# env:
+#   matrix:
+#     - TEST_SUITE='default'
+#
+# jobs:
+#   include:
+#     - os: osx
+#       osx_image: xcode12
+#       env: TEST_USER_HOME_DIR_BASE='/Users'
+#     - os: osx
+#       osx_image: xcode11.2
+#       env: TEST_USER_HOME_DIR_BASE='/Users'
+
 sudo: required
 env:
   global:
