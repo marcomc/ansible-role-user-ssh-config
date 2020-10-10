@@ -1,17 +1,17 @@
 ---
 - name: Assuming home direcotory path for user '{{ target_user_id }}'
   set_fact:
-    target_user_home_dir_base: "{{ '/Users' if ( ansible_facts['os_family'] == 'Darwin')  else '/home'  }}/{{ target_user_id }}"
-  when: target_user_home_dir_base is not defined or target_user_home_dir_base | length == 0
+    target_user_home_dir: "{{ '/Users' if ( ansible_facts['os_family'] == 'Darwin')  else '/home'  }}/{{ target_user_id }}"
+  when: target_user_home_dir is not defined or target_user_home_dir | length == 0
 
-- name: target_user_home_dir_base
+- name: target_user_home_dir
   debug:
-    var: target_user_home_dir_base
+    var: target_user_home_dir
   when: verbose|bool
 
-- name: Verify '{{ target_user_home_dir_base }}/.ssh' exists
+- name: Verify '{{ target_user_home_dir }}/.ssh' exists
   stat:
-    path: "{{ target_user_home_dir_base }}/.ssh"
+    path: "{{ target_user_home_dir }}/.ssh"
   register: user_ssh_config
 
 - name: user_ssh_config
@@ -33,10 +33,10 @@
   # end block
   when: ssh_proxy_enabled | bool
 
-- name: Copy user's ssh configuration into '{{ target_user_home_dir_base }}/.ssh/config'.
+- name: Copy user's ssh configuration into '{{ target_user_home_dir }}/.ssh/config'.
   template:
     src: templates/ssh_config.j2
-    dest: "{{ target_user_home_dir_base }}/.ssh/config"
+    dest: "{{ target_user_home_dir }}/.ssh/config"
     mode: '0600'
     owner: "{{ target_user_id }}"
     group: 'staff'
