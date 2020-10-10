@@ -15,7 +15,7 @@
     ssh_proxy_aliases: ['fancy-proxy','mysshproxy','fancy-ssh-proxy.com']
     ssh_proxy_port: 2222
 
-  tasks:
+  pre_task:
     - name: Make sure '$HOME/.ssh' exists
       file:
         path: "$HOME/.ssh"
